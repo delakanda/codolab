@@ -5,7 +5,8 @@
     "require" : {
         "smarty/smarty" : "3.1.*",
         "phpoffice/phpexcel": "1.8.*",
-        "itbz/fpdf" : "1.7.*"
+        "itbz/fpdf" : "1.7.*",
+        "ntentan/logger": "0.1.*"
     },
     "include-path" : [
         "./",

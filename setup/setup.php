@@ -156,7 +156,7 @@ create_file($home . 'app/includes.php', "<?php\n");
 create_file($home . 'app/bootstrap.php', "<?php\n");
 
 // Try to initialize the wyf framework.
-require "vendor/codollc/codolab/src/wyf_bootstrap.php";
+require "wyf_bootstrap.php";
 
 echo "\nSetting up the database ...\n";
 

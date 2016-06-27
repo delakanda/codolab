@@ -66,8 +66,6 @@ class SystemSideMenuController extends Controller
             $ret = $ret . "</li>";
         }
         $ret = $ret . "</ul>";
-        
-        var_dump($ret);
         return $ret;
     }
 }

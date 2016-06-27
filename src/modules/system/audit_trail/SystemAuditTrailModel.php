@@ -35,7 +35,7 @@ class SystemAuditTrailModel extends ORMSQLDatabaseModel
     
     public static function log($params)
     {
-        if($params['item_type'] != 'system.audit_trail')
+        if($params['item_type'] != 'system.audit_trail' && $params['item_type'] != 'system.audit_trail_data')
         {
             $model = self::getInstance();
             $params['user_id'] = $_SESSION['user_id'];

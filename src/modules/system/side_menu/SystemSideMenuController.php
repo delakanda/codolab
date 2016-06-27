@@ -20,7 +20,7 @@ class SystemSideMenuController extends Controller
     /**
      * @see lib/controllers/Controller#getContents()
      */
-    protected function getContents()
+    public function getContents()
     {
         //return $this->doMenu($this->menu);
     }
@@ -66,6 +66,8 @@ class SystemSideMenuController extends Controller
             $ret = $ret . "</li>";
         }
         $ret = $ret . "</ul>";
+        
+        var_dump($ret);
         return $ret;
     }
 }

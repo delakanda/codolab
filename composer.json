@@ -25,7 +25,6 @@
         "src/core/cache/",  
         "src/modules/system/audit_trail",
         "src/modules/system/permissions",
-        "src/modules/system/reminders",
-        "src/modules/system/side_menu"
+        "src/modules/system/reminders"
     ]
 }

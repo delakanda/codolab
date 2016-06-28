@@ -9,7 +9,7 @@ echo <<< WELCOME
 Welcome to the codolab (a clone of WYF Framework)
 ==================================================
 
-This setup guide would help you get up and running with codolab.
+This guide will help you set up and run codolab.
 
 WELCOME;
 

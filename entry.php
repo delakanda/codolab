@@ -94,10 +94,10 @@ else if ($_SESSION["logged_in"] === true )
     }
     
     // Load the side menus
-    $menuFile = SOFTWARE_HOME . "app/cache/menus/side_menu_{$_SESSION["role_id"]}.html";
-    if(file_exists($menuFile))
+    $side_menu = SOFTWARE_HOME . "app/cache/menus/side_menu_{$_SESSION["role_id"]}.html";
+    if(file_exists($side_menu))
     {
-        Application::$templateEngine->assign('side_menu', file_get_contents($menuFile));
+        Application::$templateEngine->assign('side_menu', file_get_contents($side_menu));
     }
     
     $top_menu_items = explode("/", $_GET["q"]);

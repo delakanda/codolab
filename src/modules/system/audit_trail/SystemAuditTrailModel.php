@@ -119,16 +119,23 @@ class SystemAuditTrailModel extends ORMSQLDatabaseModel
             {
                 $data = reset($model->getWithField2($field, $value));
             }
-
-            SystemAuditTrailModel::log(
-                array(
-                    'item_id' => $data[$model->getKeyField()],
-                    'item_type' => $model->package,
-                    'description' => 'Deleted item',
-                    'type' => SystemAuditTrailModel::AUDIT_TYPE_DELETED_DATA,
-                    'data' => json_encode($data)
-                )
-            );
+            
+            if($data === false)
+            {
+                trigger_error("Trying to delete an item which does not exist from [{$this->package}] ", E_USER_NOTICE);
+            }
+            else
+            {
+                SystemAuditTrailModel::log(
+                    array(
+                        'item_id' => $data[$model->getKeyField()],
+                        'item_type' => $model->package,
+                        'description' => 'Deleted item',
+                        'type' => SystemAuditTrailModel::AUDIT_TYPE_DELETED_DATA,
+                        'data' => json_encode($data)
+                    )
+                );
+            }
         }
     }
     

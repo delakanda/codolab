@@ -2,7 +2,9 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
-require "vendor/codollc/codolab/src/Db.php";
+require "vendor/autoload.php";
+require "Application.php";
+require "Db.php";
 
 echo <<< WELCOME
 
@@ -19,7 +21,7 @@ $name = get_response(
 );
 
 $home = get_response("Where is your application residing", getcwd(), null, null, true) . "/";
-$prefix = get_response("What is the prefix of your application (Leave blank if you do not want a prefix)", basename);
+$prefix = get_response("What is the prefix of your application (Leave blank if you do not want a prefix)");
 if($prefix == '') 
 {
     $prefix = '';
@@ -312,7 +314,7 @@ function get_db_credentials()
     $db = array();
     $db['host'] = get_response("Where is your application's database hosted", 'localhost', null, true);
     $db['port'] = get_response("What is the port of this database", '5432', null, true);
-    $db['user'] = get_response("What is the database username", null, null, true);
+    $db['user'] = get_response("What is the database username", 'postgres', null, true);
     $db['password'] = get_response("What is the password for the database");
     $db['name'] = get_response("What is the name of your application's database (please ensure that the database exists)", null, null, true);
     

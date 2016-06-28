@@ -92,7 +92,14 @@ else if ($_SESSION["logged_in"] === true )
     {
         Application::$templateEngine->assign('notification', "<div id='notification'>" . $_GET["notification"] . "</div>");
     }
-
+    
+    // Load the side menus
+    $menuFile = SOFTWARE_HOME . "app/cache/menus/side_menu_{$_SESSION["role_id"]}.html";
+    if(file_exists($menuFile))
+    {
+        Application::$templateEngine->assign('side_menu', file_get_contents($menuFile));
+    }
+    
     $top_menu_items = explode("/", $_GET["q"]);
     if($top_menu_items[0] != '')
     {

@@ -170,6 +170,8 @@ var wyf = {
                 if(index >= 0) wyf.tapi.checkedRows.splice(index, 1);
                 wyf.tapi.checkedRows.push(this.value);
             });
+            
+            if(checkbox.checked === false) wyf.tapi.checkedRows = new Array();
         },
 		
         confirmBulkOperation:function(message, path)

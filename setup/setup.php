@@ -6,8 +6,8 @@ require "vendor/codollc/codolab/src/Db.php";
 
 echo <<< WELCOME
 
-Welcome to the codolab (a clone of WYF Framework)
-==================================================
+Welcome to codolab (a clone of WYF Framework)
+=============================================
 
 This guide will help you set up and run codolab.
 

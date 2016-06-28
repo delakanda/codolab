@@ -54,7 +54,7 @@ class SystemAuditTrailModel extends ORMSQLDatabaseModel
                 $id = $this->datastore->data[$this->getKeyField()];
             }
             
-            @SystemAuditTrailModel::log(
+            SystemAuditTrailModel::log(
                 array(
                     'item_id' => $id,
                     'item_type' => $model->package,
@@ -122,7 +122,7 @@ class SystemAuditTrailModel extends ORMSQLDatabaseModel
             
             if($data === false)
             {
-                trigger_error("Trying to delete an item which does not exist from [{$this->package}] ", E_USER_NOTICE);
+                //trigger_error("Trying to delete an item which does not exist from [{$this->package}] ", E_USER_NOTICE);
             }
             else
             {

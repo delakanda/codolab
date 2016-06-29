@@ -175,28 +175,25 @@ Db::query(
         Db::escape($email)
     )
 );
-Db::query("
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'can_log_in_to_web', 1, '/dashboard');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_audit_trail_can_add', 1, '/system/audit_trail');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_audit_trail_can_edit', 1, '/system/audit_trail');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_audit_trail_can_delete', 1, '/system/audit_trail');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_audit_trail_can_view', 1, '/system/audit_trail');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_audit_trail_can_export', 1, '/system/audit_trail');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_audit_trail_can_import', 1, '/system/audit_trail');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_roles_can_add', 1, '/system/roles');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_roles_can_edit', 1, '/system/roles');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_roles_can_delete', 1, '/system/roles');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_roles_can_view', 1, '/system/roles');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_roles_can_export', 1, '/system/roles');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_roles_can_import', 1, '/system/roles');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_users_can_add', 1, '/system/users');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_users_can_edit', 1, '/system/users');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_users_can_delete', 1, '/system/users');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_users_can_view', 1, '/system/users');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_users_can_export', 1, '/system/users');
-    INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_users_can_import', 1, '/system/users');
-"
-);
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'can_log_in_to_web', 1, '/dashboard');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_audit_trail_can_add', 1, '/system/audit_trail');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_audit_trail_can_edit', 1, '/system/audit_trail');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_audit_trail_can_delete', 1, '/system/audit_trail');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_audit_trail_can_view', 1, '/system/audit_trail');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_audit_trail_can_export', 1, '/system/audit_trail');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_audit_trail_can_import', 1, '/system/audit_trail');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_roles_can_add', 1, '/system/roles');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_roles_can_edit', 1, '/system/roles');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_roles_can_delete', 1, '/system/roles');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_roles_can_view', 1, '/system/roles');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_roles_can_export', 1, '/system/roles');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_roles_can_import', 1, '/system/roles');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_users_can_add', 1, '/system/users');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_users_can_edit', 1, '/system/users');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_users_can_delete', 1, '/system/users');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_users_can_view', 1, '/system/users');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_users_can_export', 1, '/system/users');");
+Db::query("INSERT INTO permissions (role_id, permission, value, module) VALUES (1, 'system_users_can_import', 1, '/system/users');");
 
 echo "\nDone! Happy coding!!!!! ;)\n\n";
 

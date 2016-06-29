@@ -3,7 +3,6 @@
 error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
 require "vendor/autoload.php";
-require "Application.php";
 require "Db.php";
 
 echo <<< WELCOME

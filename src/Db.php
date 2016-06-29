@@ -143,19 +143,34 @@ class Db
      */
     public static function get($connection = null, $atAllCost = false)
     {
-        if(is_array(Application::$config))
+        if(!is_array($connection))
         {
-            $database = Application::$config['db'];
-            $connection = self::resolveConnection($connection, self::$defaultDatabase);
+            if(is_array(Application::$config))
+            {
+                $database = Application::$config['db'];
+                $connection = self::resolveConnection($connection, self::$defaultDatabase);
+            }
+            else
+            {
+                require "app/config.php";
+                $connection = self::resolveConnection($connection, $selected);
+                $database = $config['db'];            
+            }
+
+            unset(Db::$instances[$connection]);
         }
-        else
+       
+        else if(is_array($connection))
         {
-            require "app/config.php";
-            $connection = self::resolveConnection($connection, $selected);
-            $database = $config['db'];            
+            $index = json_encode($connection);
+            $database[$index] = $connection;
+            $connection = $index;
         }
         
-        unset(Db::$instances[$connection]);
+        else
+        {
+            throw new Exception('Invalid configuration parameters passed');
+        }
         
         while(!is_object(Db::$instances[$connection]))
         {
@@ -179,3 +194,4 @@ class Db
         return self::$lastQuery;
     }
 }
+

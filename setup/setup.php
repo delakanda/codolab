@@ -428,7 +428,7 @@ function db_set_up()
         CREATE TABLE system.binary_objects
         (
             object_id serial NOT NULL,
-            data blob,
+            data bytea,
             CONSTRAINT binary_objects_pkey PRIMARY KEY (object_id)
         );"
     );

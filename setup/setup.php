@@ -168,10 +168,8 @@ $email = get_response('Provide your email address', null, null, true);
 Db::query("INSERT INTO system.roles(role_id, role_name) VALUES(1, 'System Administrator')");
 Db::query(
     sprintf(
-    	"INSERT INTO system.users
-    		(user_name, password, role_id, first_name, last_name, user_status, email) 
-    	VALUES
-    	 	('%s', '%s', 1, 'Super', 'User', 2, '%s')", 
+    	"INSERT INTO system.users (user_name, password, role_id, first_name, last_name, user_status, email) 
+    	VALUES ('%s', '%s', 1, 'Super', 'User', 2, '%s')", 
         Db::escape($username),
         Db::escape($username),
         Db::escape($email)
@@ -328,7 +326,7 @@ function db_set_up()
     
     Db::query("
         CREATE TABLE system.roles (
-            role_id integer NOT NULL,
+            role_id serial NOT NULL,
             role_name character varying(64),
             CONSTRAINT roles_role_id_pkey PRIMARY KEY (role_id)
         );"
@@ -336,7 +334,7 @@ function db_set_up()
 
     Db::query("
         CREATE TABLE system.users (
-            user_id integer NOT NULL,
+            user_id serial NOT NULL,
             user_name character varying(64) NOT NULL,
             password character varying(64) NOT NULL,
             role_id integer,
@@ -355,7 +353,7 @@ function db_set_up()
 
     Db::query("
         CREATE TABLE system.audit_trail (
-            audit_trail_id integer NOT NULL,
+            audit_trail_id serial NOT NULL,
             user_id integer NOT NULL,
             item_id integer NOT NULL,
             item_type character varying(64) NOT NULL,
@@ -372,7 +370,7 @@ function db_set_up()
 
     Db::query("
         CREATE TABLE system.audit_trail_data (
-            audit_trail_data_id integer NOT NULL,
+            audit_trail_data_id serial NOT NULL,
             audit_trail_id integer NOT NULL,
             data text,
             CONSTRAINT audit_trail_data_audit_trail_data_id_pkey PRIMARY KEY (audit_trail_data_id)
@@ -381,7 +379,7 @@ function db_set_up()
 
     Db::query("
         CREATE TABLE system.permissions (
-            permission_id integer NOT NULL,
+            permission_id serial NOT NULL,
             role_id integer NOT NULL,
             permission character varying(4000),
             value numeric NOT NULL,

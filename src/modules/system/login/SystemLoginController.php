@@ -26,7 +26,7 @@ class SystemLoginController extends Controller
 
         $passwordRetype = new PasswordField("Retype Password", "password2");
         $form->add($passwordRetype);
-        $form->setValidatorCallback($this->getClassName() . "::change_password_callback");
+        $form->setCallback($this->getClassName() . "::change_password_callback");
         $form->setShowClear(false);
         $form = $form->render();
 
@@ -91,7 +91,8 @@ class SystemLoginController extends Controller
         }
         else
         {
-            $errors[] = "Passwords entered do not match";
+            $errors->addError("Passwords entered do not match");
+            return false;
         }
         return true;
     }

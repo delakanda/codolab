@@ -148,7 +148,10 @@ error_reporting(E_ALL ^ (E_NOTICE ^ E_STRICT));
 	'models' => true,
 	'server_key' => 'localhost'
     ),
-    'theme' => 'default'
+    'audit_trails' => true,
+    'theme' => 'default',
+    'multi_processor' => array('num_threads' => 16),
+    'no_dashboard' => false
 );
 CONFIG;
 

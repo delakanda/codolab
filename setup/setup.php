@@ -327,7 +327,7 @@ function db_set_up()
     Db::query("CREATE SCHEMA system;");
     
     Db::query("
-        CREATE TABLE roles (
+        CREATE TABLE system.roles (
             role_id integer NOT NULL,
             role_name character varying(64),
             CONSTRAINT roles_role_id_pkey PRIMARY KEY (role_id)
@@ -335,7 +335,7 @@ function db_set_up()
     );
 
     Db::query("
-        CREATE TABLE users (
+        CREATE TABLE system.users (
             user_id integer NOT NULL,
             user_name character varying(64) NOT NULL,
             password character varying(64) NOT NULL,
@@ -348,13 +348,13 @@ function db_set_up()
             CONSTRAINT users_user_id_pkey PRIMARY KEY (user_id),
             CONSTRAINT user_name_ukey UNIQUE (user_name),
             CONSTRAINT users_role_id_fkey FOREIGN KEY (role_id) 
-                REFERENCES roles(role_id) 
+                REFERENCES system.roles(role_id) 
                 ON DELETE SET NULL
         );"
     );
 
     Db::query("
-        CREATE TABLE audit_trail (
+        CREATE TABLE system.audit_trail (
             audit_trail_id integer NOT NULL,
             user_id integer NOT NULL,
             item_id integer NOT NULL,
@@ -365,13 +365,13 @@ function db_set_up()
             data text,
             CONSTRAINT audit_trail_audit_trail_id_pkey PRIMARY KEY (audit_trail_id),
             CONSTRAINT audit_trail_user_id_fkey FOREIGN KEY (user_id) 
-                REFERENCES users(user_id) 
+                REFERENCES system.users(user_id) 
                 ON DELETE SET NULL
         );"
     );
 
     Db::query("
-        CREATE TABLE audit_trail_data (
+        CREATE TABLE system.audit_trail_data (
             audit_trail_data_id integer NOT NULL,
             audit_trail_id integer NOT NULL,
             data text,
@@ -380,7 +380,7 @@ function db_set_up()
     );
 
     Db::query("
-        CREATE TABLE permissions (
+        CREATE TABLE system.permissions (
             permission_id integer NOT NULL,
             role_id integer NOT NULL,
             permission character varying(4000),
@@ -388,7 +388,7 @@ function db_set_up()
             module character varying(4000),
             CONSTRAINT permissions_permission_id_pkey PRIMARY KEY (permission_id),
             CONSTRAINT permissios_role_id_fkey FOREIGN KEY (role_id) 
-                REFERENCES roles(role_id) 
+                REFERENCES system.roles(role_id) 
                 ON DELETE CASCADE
         );"
     );

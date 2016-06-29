@@ -5,7 +5,7 @@
  * @author ekow
  * @ingroup Forms
  */
-class DateField2 extends TextField
+class DateTimeField extends TextField
 {
     public $hasTime = false;
 

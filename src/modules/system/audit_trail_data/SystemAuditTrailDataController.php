@@ -1,7 +1,6 @@
 <?php
 
-class SystemConfigurationsModel extends ORMSQLDatabaseModel
+class SystemAuditTrailDataController extends ModelController
 {
-    public $database = '.configurations';
-    public $disableAuditTrails = true;
+    public $modelName = '.audit_trail_data';
 }

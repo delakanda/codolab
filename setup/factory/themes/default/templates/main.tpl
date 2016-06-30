@@ -27,7 +27,7 @@
 <body onload="wyf.init()">
 <div id="header">
     <div id='menu-section'>
-    <a href='/'><img src='/app/themes/n-series/images/home.png'/></a><span id='top-menu'>{$top_menu}</span>
+    <a href='/'><img src='/app/themes/default/images/home.png'/></a><span id='top-menu'>{$top_menu}</span>
     </div>
     <div id='user-section'>
         <div id='user-info'><a href='#' onclick="$('#user-menu').fadeIn()"><i class="fa fa-user"></i> &nbsp;{$firstname} {$lastname}</a></div>

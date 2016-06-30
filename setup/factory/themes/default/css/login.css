@@ -1,64 +1,67 @@
 @CHARSET "UTF-8";
 body
 {
-	background-image:url('../images/loginbg.jpg');
-	background-position: 50% 50%;
-	font-family:Ariel,Sans;
+background-position: 50% 50%;
+font-family:open-sans;
+background-color:#F8F8F8;
+background-image:none;
 }
 
 div#login-logo
 {
-	margin-left:auto;
-	margin-right:auto;
-	padding:60px;
-	/*visibility:hidden;*/
-	color:#435500;
-	font-weight:bold;
+margin-left:auto;
+margin-right:auto;
+padding:60px;
+color:#435500;
+font-weight:bold;
 }
 
 div#login-box
 {
-	width:300px;
-	margin-left:auto;
-	margin-right:auto;
-	background-color:#a0a0a0;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	padding:15px;
-	margin-top:20px;
-	text-align:center;
-	color:#fff;
-	font-size:large;
-	font-weight:bold;
-	opacity:0.8;
+width:400px;
+margin-left:auto;
+margin-right:auto;
+margin-top:150px;
+}
+
+div#login-box h1
+{
+  color:#FFF;
+  background: #2980b9;
+  margin: 0px;
+  padding:10px 20px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1), 0 1px 1px rgba(0,0,0,0.1);
 }
 
 div#login-box form
 {
-	border:none;
-	background-color:transparent;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
+border:none;
+background-color:#FFF;
+box-shadow: 0 1px 1px rgba(0,0,0,0.1), 0 1px 1px rgba(0,0,0,0.1);
+padding:10px 20px;
 }
 
-
-div#login-box input
+div#login-box input[type=text],div#login-box input[type=password]
 {
-font-size:large;
-border:none;
+font-size:x-large;
 }
 
 div#login-box div.fapi-label
 {
-color:#fff;
+color:#BE2625;
 text-shadow:none;
+font-weight: bold;
+font-size: large;
 }
 
 div#login-box h2
 {
 font-size:normal;
 text-align:left;
+background-color: #FFF;
+margin:0;
+padding:5px 20px;
+box-shadow: 0 1px 1px rgba(0,0,0,0.1), 0 1px 1px rgba(0,0,0,0.1);
 }
 
 div#login-box p
@@ -66,5 +69,60 @@ div#login-box p
 font-size:small;
 font-weight:normal;
 text-align:left;
-margin:0px;
+background-color: #FFF;
+margin:0;
+padding:0px 20px !important;
+box-shadow: 0 1px 1px rgba(0,0,0,0.1), 0 1px 1px rgba(0,0,0,0.1);
+}
+
+#fapi-submit-area
+{
+  border-top: 1px solid #47a1de;
+}
+
+/**************** OVERRIDE FAPI STYLES *********************/
+.fapi-label
+{
+  color:#2980b9 !important;
+}
+
+.fapi-submit
+{
+  border:none !important;
+  box-shadow: none !important;
+  background:#3498db !important;
+  color:#FFF !important;
+  font-weight: normal !important;
+  cursor: pointer;
+  padding:10px 20px !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.fapi-submit:hover
+{
+  background-color: #2980b9 !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+div#fapi-submit-area
+{
+    border-top:2px solid #ef9a9a;
+}
+
+.fapi-error
+{
+    background:#ef9a9a !important;
+}
+
+.fapi-error ul li
+{
+   color:#FFF !important;
+   list-style: square !important;
+   margin-left:20px;
 }

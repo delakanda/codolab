@@ -219,6 +219,10 @@ class ModelController extends Controller
             $formclass = $this->name."Form";
             $form = new $formclass();
         }
+        else if ($this->model->dataModel)
+        {
+            $form = new MCDefaultForm($this->model->dataModel);
+        }
         else
         {
             $form = new MCDefaultForm($this->model);

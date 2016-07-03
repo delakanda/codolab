@@ -126,6 +126,7 @@ abstract class Model implements ArrayAccess
     private static function getNestedModelInstance($model, $path, $modelName)
     {
         global $packageSchema;
+        global $packageName;
         
         $modelPathArray = explode(".", $model);
         $baseModelPath = SOFTWARE_HOME . ($path==null?Application::$packagesPath:$path)."app/modules/"; 
@@ -139,6 +140,7 @@ abstract class Model implements ArrayAccess
                 $modelClassName = $package_name . Application::camelize(implode(".", $modelPathArray)) . "Model";
                 $modelIncludePath = SOFTWARE_HOME . $redirect_path . "/" . implode("/" , $modelPathArray);
                 $packageSchema = $package_schema;
+                $packageName = strtolower($package_name);
                 $redirectedPackage = $redirectedPackage == "" ? $package_path : $redirectedPackage;
                 add_include_path($modelIncludePath, false);
                 $instance = new $modelClassName($model, $modelName);

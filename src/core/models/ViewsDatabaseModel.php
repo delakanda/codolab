@@ -4,6 +4,7 @@ class ViewsDatabaseModel extends ORMSQLDatabaseModel
 {
     public $dataModel;
     public $dataModelName;
+    public $databaseType = 'view';
     
     public function postInitHook()
     {

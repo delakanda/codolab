@@ -20,6 +20,8 @@ class ORMSQLDatabaseModel extends SQLDatabaseModel
     public $unique = array();
     public $required = array();
     
+    public $databaseType = 'table';
+    
     public function __construct($package, $name)
     {
         global $redirectedPackage;

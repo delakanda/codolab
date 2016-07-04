@@ -7,7 +7,11 @@ class SQLDatabaseModel extends Model
         global $packageName;
         
         $this->database = (substr($this->database, 0, 1) == "." ? $packageSchema: "") . $this->database;
-        $this->dataModelName = (substr($this->dataModelName, 0, 1) == "." ? $packageName: "") . $this->dataModelName;
+        
+        if($this->databaseType == 'view')
+        {
+            $this->dataModelName = (substr($this->dataModelName, 0, 1) == "." ? $packageName: "") . $this->dataModelName;
+        }
     }
     
     /**

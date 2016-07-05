@@ -8,9 +8,9 @@ class SQLDatabaseModel extends Model
         
         $this->database = (substr($this->database, 0, 1) == "." ? $packageSchema: "") . $this->database;
         
-        if($this->databaseType == 'view')
+        if($this->databaseType == 'view' && $this->dataModelName == null)
         {
-            $this->dataModelName = (substr($this->dataModelName, 0, 1) == "." ? $packageName: "") . $this->dataModelName;
+            throw new ModelException("Failed to load Model [$this->dataModel] with [$this->dataModelName]");
         }
     }
     

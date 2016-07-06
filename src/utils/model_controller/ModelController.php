@@ -141,7 +141,21 @@ class ModelController extends Controller
         $this->modelName = ($this->modelName == "" ? $model : $this->modelName);
         $this->model = Model::load($this->modelName);
         $this->name = $this->model->name;
-        $urlBase = ($redirectedPackage != '' ? "$redirectedPackage" : '') . $this->modelName;
+        
+        if($redirectedPackage != '')
+        {
+            $path = explode(".", $this->modelName);
+            
+            array_shift($path);
+            $base = implode(".", $path);
+            $urlBase = "$redirectedPackage." . $base;
+        }
+        
+        else
+        {
+            $urlBase = $this->modelName;
+        }
+        
         $this->urlPath = Application::$prefix."/".str_replace(".","/",$urlBase);
         $this->permissionPrefix = str_replace(".", "_", $redirectedPackage) . str_replace(".", "_", $this->modelName);
         $this->localPath = "app/modules/".str_replace(".","/",$urlBase);

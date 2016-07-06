@@ -41,7 +41,7 @@ if(isset($_REQUEST["__api_session_id"]))
 
 global $redirectedPackage;
 global $packageSchema;
-global $packageName;
+global $productName;
 
 $GLOBALS['fapi_stylesheet'] = false;
 $GLOBALS['tapi_stylesheet'] = false;

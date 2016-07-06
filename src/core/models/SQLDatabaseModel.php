@@ -4,7 +4,6 @@ class SQLDatabaseModel extends Model
     public function __construct()
     {
         global $packageSchema;
-        global $packageName;
         
         $this->database = (substr($this->database, 0, 1) == "." ? $packageSchema: "") . $this->database;
         

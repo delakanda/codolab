@@ -10,6 +10,7 @@
     },
     "include-path" : [
         "./",
+        "lib",
         "src",
         "src/utils/model_controller",
         "src/utils/model_controller/jobs",

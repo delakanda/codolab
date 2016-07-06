@@ -23,7 +23,8 @@ class System
         }
         
         $configurations = Model::load("system.configurations");
-        $value = $configurations->get(["fields" => "value","conditions" => "key = $name"]);
-        return reset($value);
+        $value = $configurations->get(["fields" => "value","conditions" => "key = '$name'"]);
+        
+        return $value[0]['value'];
     }
 }

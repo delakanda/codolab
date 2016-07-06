@@ -151,6 +151,7 @@ class Controller
         global $redirectedPackage;
         global $redirectPath;
         global $packageSchema;
+        global $productName;
         
         $controller_path = "";
         $controller_name = "";
@@ -205,6 +206,7 @@ class Controller
                 $redirectedPackage = $package_path;
                 $packageSchema = $package_schema;
                 $redirectPath = $redirect_path;
+                $productName = $product_name;
             }
             else if($redirected === true && file_exists(SOFTWARE_HOME . "$redirect_path/$controller_path/$p/{$baseClassName}Controller.php"))
             {

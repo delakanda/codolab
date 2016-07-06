@@ -79,6 +79,7 @@ class ModelSearchField extends Field
     {
         global $redirectedPackage;
         global $packageSchema;
+        global $productName;
         
         $name = $this->getName();
         $hidden = new HiddenField($name,$this->getValue());
@@ -101,7 +102,8 @@ class ModelSearchField extends Field
             "conditions"=>"",
             "and_conditions"=>$this->andConditions,
             'redirected_package' => $redirectedPackage,
-            'package_schema' => $packageSchema
+            'package_schema' => $packageSchema,
+            'product_name' => $productName,
         );
         $jsonSearchFields = array_reverse($this->searchFields);
         $object = base64_encode(serialize($object));

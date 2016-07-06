@@ -358,11 +358,13 @@ class SystemApiController extends Controller
     {
         global $redirectedPackage;
         global $packageSchema;
+        global $productName;
         
         $object = unserialize(base64_decode($_REQUEST["object"]));
         
         $redirectedPackage = $object['redirected_package'];
         $packageSchema = $object['package_schema'];
+        $productName = $object['product_name'];
 
         $model = Model::load($object["model"]);
 

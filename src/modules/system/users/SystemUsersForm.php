@@ -9,7 +9,7 @@ class SystemUsersForm extends Form
             Element::create("TextField", "Firstname", "first_name"),
             Element::create("TextField", "Lastname", "last_name"),
             Element::create("TextField", "Othernames", "other_names"),
-            Element::create("ModelField", ".roles.role_id", "role_name"),
+            Element::create("ModelField", "system.roles.role_id", "role_name"),
             Element::create("TextField", "Email", "email"),
             Element::create("HiddenField", "password")
         );

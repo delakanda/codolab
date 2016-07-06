@@ -12,7 +12,7 @@ class SystemRolesController extends ModelController
     private $id = 0;
     private $save;
     private $permissions;
-    public $modelName = '.roles';
+    public $modelName = 'system.roles';
     
     public function setupListView()
     {

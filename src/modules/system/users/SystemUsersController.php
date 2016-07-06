@@ -1,13 +1,13 @@
 <?php
 class SystemUsersController extends ModelController 
 {
-	public $listFields = array(
-	    ".users.user_id",
-	    ".users.user_name",
-	    ".users.first_name",
-	    ".users.last_name",
-	    ".roles.role_name"
-	);
-	
-	public $modelName = ".users";
+    public $modelName = 'system.users';
+    
+    public $listFields = array(
+        'system.users.user_id',
+        'system.users.user_name',
+        'system.users.first_name',
+        'system.users.last_name',
+        'system.roles.role_name'
+    );
 }

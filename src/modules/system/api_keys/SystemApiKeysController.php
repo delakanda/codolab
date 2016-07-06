@@ -1,11 +1,11 @@
 <?php
 class SystemApiKeysController extends ModelController
 {
-    public $modelName = '.api_keys';
+    public $modelName = 'system.api_keys';
     
     public $listFields = array(
-        '.api_keys.api_key_id',
-        '.users.user_name',
-        '.api_keys.key'
+        'system.api_keys.api_key_id',
+        'system.users.user_name',
+        'system.api_keys.key'
     );
 }

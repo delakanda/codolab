@@ -5,11 +5,6 @@
  */
 class SystemLogoutController extends Controller
 {
-    public function __construct()
-    {
-
-    }
-
     public function getContents()
     {
         User::log("Logged out");

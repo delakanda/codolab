@@ -2,5 +2,5 @@
 
 class SystemConfigurationsController extends ModelController
 {
-    public $modelName = '.configurations';
+    public $modelName = 'system.configurations';
 }

@@ -2,28 +2,26 @@
 
 class System
 {
-    public static function getNextValue($sequence, $redirect = false)
+    public static function getNextValue($sequence)
     {
-        if($redirect)
-        {
-            global $packageSchema;
-            $sequence = "$packageSchema.$sequence";
-        }
+        global $redirectedPackage;
+        global $packageSchema;
+        
+        $name = $redirectedPackage != '' ? "$packageSchema.$sequence" : $sequence;
        
         $sequences = Model::load("system.sequences");
-        return $sequences->nextval($sequence);
+        return $sequences->nextval($name);
     }
     
-    public static function getConfiguration($name, $redirect = false)
+    public static function getConfiguration($name)
     {
-        if($redirect)
-        {
-            global $productName;
-            $name = "$productName.$name";
-        }
+        global $redirectedPackage;
+        global $productName;
+
+        $key = $redirectedPackage != '' ? "$productName.$name" : $name;
         
         $configurations = Model::load("system.configurations");
-        $value = $configurations->get(["fields" => "value","conditions" => "key = '$name'"]);
+        $value = $configurations->get(["fields" => "value","conditions" => "key = '$key'"]);
         
         return $value[0]['value'];
     }

@@ -197,7 +197,7 @@ class Controller
                 $controller_type = Controller::TYPE_REPORT;
                 break;
             }
-            else if(file_exists(SOFTWARE_HOME . "app/modules/$controller_path/$p/package_redirect.php"))
+            else if(file_exists(SOFTWARE_HOME . "app/modules/$controller_path/$p/package_redirect.php") && $i < '1')
             {
                 include(SOFTWARE_HOME . "app/modules/$controller_path/$p/package_redirect.php");
                 $redirected = true;

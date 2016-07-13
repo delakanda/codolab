@@ -76,21 +76,21 @@ mkdir2($home . 'app/temp');
 mkdir2($home . 'app/themes');
 mkdir2($home . 'app/uploads');
 
-copy_dir("vendor/codollc/codolab/setup/factory/*", "$home/app");
-copy_dir("vendor/codollc/codolab/setup/config_sample", "$home/app");
-copy("vendor/codollc/codolab/setup/htaccess", ".htaccess");
+copy_dir("vendor/codogh/codolab/setup/factory/*", "$home/app");
+copy_dir("vendor/codogh/codolab/setup/config_sample", "$home/app");
+copy("vendor/codogh/codolab/setup/htaccess", ".htaccess");
 create_file(
     "$home/app/cache/menus/side_menu_1.html",
     str_replace(
         '{$prefix}', 
         "$prefix", 
-        file_get_contents("vendor/codollc/codolab/setup/factory/cache/menus/side_menu_1.html")
+        file_get_contents("vendor/codogh/codolab/setup/factory/cache/menus/side_menu_1.html")
     )
 );
 
 $system = <<< SYSTEM
 <?php
-\$redirect_path = "vendor/codollc/codolab/src/modules/system";
+\$redirect_path = "vendor/codogh/codolab/src/modules/system";
 \$package_name = "System";
 \$package_path = "system";
 \$package_schema = "system";

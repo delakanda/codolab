@@ -53,7 +53,7 @@ class ModelField extends SelectionList
             Model::MODE_ARRAY
         );
 
-        $this->addOption("Add new " . Utils::singular($this->model->getEntity()), 'NEW');
+        //$this->addOption("Add new " . Utils::singular($this->model->getEntity()), 'NEW');
         foreach($data as $datum)
         {
             if($datum[1] == "")

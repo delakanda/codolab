@@ -609,7 +609,9 @@ class Postgresql extends SQLDBDataStore
                 case "timestamp with time zone":
                     $type = "datetime";
                     break;
-            
+                case 'time without time zone':
+                    $type="time";
+                    break;
                 case "character varying":
                 case "character":
                     if($pgField["character_maximum_length"]<256)

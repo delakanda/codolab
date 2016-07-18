@@ -68,6 +68,11 @@ class MCDefaultForm extends Form
         return $this->getElement('Checkbox', $field)->setCheckedValue('1');
     }
     
+    private function getTimeField($field)
+    {
+        return $this->getElement('TimeField', $field);
+    }
+    
     private function getElement($element, $field)
     {
         return Element::create($element, $field['label'], $field['name'], $field['description']);

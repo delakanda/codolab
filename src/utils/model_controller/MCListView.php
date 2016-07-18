@@ -13,7 +13,7 @@ class MCListView
      * which is used to display the model.
      * @var Toolbar
      */
-    private $toolbar;
+    public $toolbar;
     
     private $model;
     

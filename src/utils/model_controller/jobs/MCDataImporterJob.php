@@ -1,6 +1,6 @@
 <?php
 
-class MCDataImporterJob extends ajumamoro\Ajuma
+class MCDataImporterJob extends ajumamoro\Job
 {
     private $fileFields = array();
     private $headers;
@@ -17,7 +17,7 @@ class MCDataImporterJob extends ajumamoro\Ajuma
     private $line;
     private $added = 0;
     private $updated = 0;
-    
+
     public function run()
     {
         try{
@@ -29,19 +29,19 @@ class MCDataImporterJob extends ajumamoro\Ajuma
         }
         return $status;
     }
-    
+
     private function setModelData($data, &$errors)
     {
         $hasValues = false;
-        
+
         foreach($data as $i => $value)
         {
             $field = $this->fileFields[$i]->getName();
-            if(trim($value) !== '') 
+            if(trim($value) !== '')
             {
                 $hasValues = true;
             }
-            
+
             try
             {
                 $this->fields[$i]->setWithDisplayValue($value);
@@ -51,13 +51,13 @@ class MCDataImporterJob extends ajumamoro\Ajuma
                 $hasValues = false;
                 $errors[$field] = array($e->getMessage());
             }
-            
+
             $this->displayData[$field] = $value;
             $this->modelData[$field] = $this->fields[$i]->getValue();
-        } 
+        }
         return $hasValues;
     }
-    
+
     /**
      * Maps the fields on the file to those on the form.
      */
@@ -74,9 +74,9 @@ class MCDataImporterJob extends ajumamoro\Ajuma
             {
                 throw new Exception("Invalid file format could not find the {$field->getLabel()} column");
             }
-        }        
+        }
     }
-    
+
     private function updateData()
     {
         $tempData = reset(
@@ -85,23 +85,23 @@ class MCDataImporterJob extends ajumamoro\Ajuma
                 $this->modelData[$this->secondaryKey]
             )
         );
-        
-        if($tempData !== false) 
+
+        if($tempData !== false)
         {
             if($this->tertiaryKey != "")
             {
                 $this->modelData[$this->primaryKey] = $tempData[$this->primaryKey];
                 $this->modelData[$this->tertiaryKey] = $tempData[$this->tertiaryKey];
             }
-            
+
 
             $validated = $this->modelInstance->setData(
                 $this->modelData,
                 $this->primaryKey,
                 $tempData[$this->primaryKey]
             );
-            
-            if($validated===true) 
+
+            if($validated===true)
             {
                 $this->modelInstance->update(
                     $this->primaryKey,
@@ -118,24 +118,24 @@ class MCDataImporterJob extends ajumamoro\Ajuma
         else
         {
             return $this->addData();
-        }        
+        }
     }
-    
+
     private function addData()
     {
         $validated = $this->modelInstance->setData($this->modelData);
-        if($validated===true) 
+        if($validated===true)
         {
             $this->modelInstance->save();
             $this->added++;
-            return 'Added';  
-        }   
+            return 'Added';
+        }
         else
         {
             return $validated;
         }
     }
-    
+
     private function flattenErrors($errors)
     {
         $flatErrors = array();
@@ -145,7 +145,7 @@ class MCDataImporterJob extends ajumamoro\Ajuma
         }
         return $flatErrors;
     }
-    
+
     private function saveData()
     {
         if($this->secondaryKey!=null && $this->modelData[$this->secondaryKey] != '')
@@ -175,7 +175,7 @@ class MCDataImporterJob extends ajumamoro\Ajuma
                 'data' => $this->displayData
             );
             return true;
-        }        
+        }
     }
 
     public function go()
@@ -183,14 +183,14 @@ class MCDataImporterJob extends ajumamoro\Ajuma
         $file = fopen($this->file, "r");
         $this->headers = fgetcsv($file);
         $this->modelInstance = Model::load($this->model)->setQueryResolve(false)->setQueryExplicitRelations(false);
-        
-        
+
+
         $this->setupFileFields();
-        
+
         $this->primaryKey = $this->modelInstance->getKeyField();
         $this->tertiaryKey = $this->modelInstance->getKeyField("tertiary");
         $this->secondaryKey = $this->modelInstance->getKeyField('secondary');
-        
+
 
         $this->modelInstance->datastore->beginTransaction();
         $this->line = 1;
@@ -201,13 +201,13 @@ class MCDataImporterJob extends ajumamoro\Ajuma
             $data = fgetcsv($file);
             $this->modelData = array();
             $errors = array();
-            
+
             if(!is_array($data))
             {
                 continue;
             }
-            
-            if($this->setModelData($data, $errors)) 
+
+            if($this->setModelData($data, $errors))
             {
                 if(!$this->saveData())
                 {
@@ -215,7 +215,7 @@ class MCDataImporterJob extends ajumamoro\Ajuma
                     break;
                 }
             }
-            else 
+            else
             {
                 if(count($errors) > 0)
                 {
@@ -225,21 +225,21 @@ class MCDataImporterJob extends ajumamoro\Ajuma
                             'data' => $this->displayData,
                             'errors' => $errors,
                         )
-                    );                    
+                    );
                 }
                 $hasErrors = true;
                 break;
             }
         }
-        
+
         unlink($this->file);
-        
+
         $return = array(
             'statuses' => $this->statuses,
             'headers' => $this->headers
         );
-        
-        if(!$hasErrors) 
+
+        if(!$hasErrors)
         {
             $return['message'] = 'Succesfully Imported';
             $return['added'] = $this->added;
@@ -253,7 +253,7 @@ class MCDataImporterJob extends ajumamoro\Ajuma
             $return['errors'] = $this->flattenErrors($this->statuses[0]['errors']);
             $return['line'] = $this->line;
         }
-        
-        return $return;       
+
+        return $return;
     }
 }

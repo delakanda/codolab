@@ -52,6 +52,11 @@ class MCListView
         $this->listConditions = $listConditions;
     }
     
+    public function addLinkButton($label, $link, $icon = null)
+    {
+        $this->toolbar->addLinkButton($label, $this->urlPath ."/$link", $icon);
+    }
+    
     public function addOperation($link, $label, $action = null)
     {
         $this->table->addOperation($link, $label, $action);

@@ -26,17 +26,17 @@ class TimeField extends TextField
         return "<input ".$this->getAttributes()." />";
     }
 
-  /*  public function setValue($value)
+   public function setValue($value)
     { 
-        if(preg_match("([01]?[0-9]|2[0-3]):[0-5][0-9]", $value) == 0 && $value != '')
+        if(preg_match("/([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?/", $value) == 1)
         {
-           parent::setValue(false);
+           parent::setValue($value);
            return $this;
         }
        else{
-           parent::setValue($value);
+           parent::setValue(false);
            return $this;
        }
-    }*/
+    }
 }
 

@@ -3,6 +3,7 @@
 abstract class FilteredModelController extends ModelController
 {
     protected $selectionLists = array();
+    protected $filterFieldModel;
 
     abstract protected function addSelectionListToolbar();
     
@@ -17,8 +18,8 @@ abstract class FilteredModelController extends ModelController
             $this->addListItems($selectionList, $list);
             
             $this->filterFieldModel = $this->model;
-            $selectionList->onchange = "wyf.updateFilter('{$this->table->name}', '{$this->filterFieldModel->database}.{$list['filter_field']}', this.value)";
-            $this->listView->toolbar->add($selectionList);
+            $selectionList->onchange = "wyf.updateFilter('{$this->listView->table->name}', '{$this->filterFieldModel->database}.{$list['filter_field']}', this.value)";
+            $this->listView->addToolbarItem($selectionList);
         }
     }
 
@@ -27,13 +28,10 @@ abstract class FilteredModelController extends ModelController
         $ret = parent::getContents();
         foreach ($this->selectionLists as $list)
         {
-            if($this->apiMode === false)
-            {
-                $ret .= "<script type='text/javascript'>
-                    wyf.updateFilter('{$this->table->name}', '{$this->filterFieldModel->database}.{$list['filter_field']}', '{$list['default_value']}');
-                    {$this->table->name}Search();
-                </script>";
-            }
+            $ret .= "<script type='text/javascript'>
+                wyf.updateFilter('{$this->listView->table->name}', '{$this->filterFieldModel->database}.{$list['filter_field']}', '{$list['default_value']}');
+                {$this->listView->table->name}Search();
+            </script>";
         }
         return $ret;
     }

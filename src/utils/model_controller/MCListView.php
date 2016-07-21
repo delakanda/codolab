@@ -6,14 +6,14 @@ class MCListView
      * of displaying and also manipulating the model's data.
      * @var MultiModelTable
      */
-    private $table;
+    public $table;
 
     /**
      * An instance of the Toolbar class. This toolbar is put on top of the list
      * which is used to display the model.
      * @var Toolbar
      */
-    public $toolbar;
+    private $toolbar;
     
     private $model;
     
@@ -50,6 +50,16 @@ class MCListView
     public function setListConditions($listConditions)
     {
         $this->listConditions = $listConditions;
+    }
+    
+    public function addToolbarItem($toolbar)
+    {
+        $this->toolbar->add($toolbar);
+    }
+    
+    public function addLinkButton($label, $link, $icon = null)
+    {
+        $this->toolbar->addLinkButton($label, $this->urlPath ."/$link", $icon);
     }
     
     public function addOperation($link, $label, $action = null)

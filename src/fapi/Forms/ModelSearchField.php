@@ -166,7 +166,7 @@ class ModelSearchField extends Field
     public function getDisplayValue()
     {
         $jsonSearchFields = array_reverse($this->searchFields);
-        $data = $this->model[$this->getValue()];
+        $data = $this->getValue() ? $this->model[$this->getValue()] : array();
         $val = "<b>".$data[0][$jsonSearchFields[0]]."</b> ";
         for($i=1;$i<count($jsonSearchFields);$i++)
         {

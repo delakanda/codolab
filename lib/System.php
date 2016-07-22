@@ -25,4 +25,9 @@ class System
         
         return $value[0]['value'];
     }
+
+    public static function getModelDetails($model, $condition)
+    {
+        return $model->get(array("conditions" => $condition));
+    }
 }

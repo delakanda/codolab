@@ -25,9 +25,27 @@ class System
         
         return $value[0]['value'];
     }
-
-    public static function getModelDetails($model, $condition)
+    
+    public static function addSubDays($date, $days, $operator = "+", $return = 'd/m/Y' )
     {
-        return $model->get(array("conditions" => $condition));
+        $operand = intval($days); 
+        $timestamp = is_numeric($date) ? $date : Utils::stringToTime($date);
+       
+        if($return == 'timestamp')
+        {
+            return strtotime("$operator $operand days", $timestamp);
+        }
+        
+        return date($return, strtotime("$operator $operand days", $timestamp));
     }
+    
+    public static function dateDifference($startDate, $endDate)
+    {
+        $start = is_numeric($startDate) ? $startDate : Utils::stringToTime($startDate);
+        $end = is_numeric($endDate) ? $endDate : Utils::stringToTime($endDate);
+        
+        return floor(($end - $start) / 86400);
+    }
+    
+    
 }

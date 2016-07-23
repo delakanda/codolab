@@ -26,17 +26,18 @@ class System
         return $value[0]['value'];
     }
     
-    public static function addSubDays($date, $days, $operator = "+", $return = 'd/m/Y' )
+    public static function addDays($days, $date = null, $format = 'd/m/Y' )
     {
-        $operand = intval($days); 
-        $timestamp = is_numeric($date) ? $date : Utils::stringToTime($date);
+        $operand = abs($days); 
+        $operator = intval($days) < 0 ? '-' : '+';
+        $timestamp = $date ? (is_numeric($date) ? $date : Utils::stringToTime($date)) : time();
        
-        if($return == 'timestamp')
+        if($format == 'timestamp')
         {
             return strtotime("$operator $operand days", $timestamp);
         }
         
-        return date($return, strtotime("$operator $operand days", $timestamp));
+        return date($format, strtotime("$operator $operand days", $timestamp));
     }
     
     public static function dateDifference($startDate, $endDate)

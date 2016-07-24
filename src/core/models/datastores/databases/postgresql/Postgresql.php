@@ -207,8 +207,9 @@ class Postgresql extends SQLDBDataStore
                       break;
                     
                   case "date":
+                      $timestamp = $value ? (is_numeric($value) ? date("Y-m-d", $value) : Utils::stringToDatabaseDate($value)) : "";
                       $this->formattedData[$field] = 
-                      $value == "" ? "null" : sprintf("'%s'", date("Y-m-d",$value));
+                      $timestamp == "" ? "null" : sprintf("'%s'", $timestamp);
                       break;
                       
                   case "binary":

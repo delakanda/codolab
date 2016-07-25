@@ -306,7 +306,12 @@ abstract class Model implements ArrayAccess
         {
             $this->datastore->data[$field] = $value;
         }
-
+        
+        if($this->assumedTransactionMode == Model::TRANSACTION_MODE_EDIT)
+        {
+            $this->datastore->data[$this->keyField] = $this->datastore->tempData[0][$this->keyField];
+        }
+        
         $errors = $this->preValidateHook();
         $numErrors = count($errors);
         

@@ -187,7 +187,7 @@ class SystemApiController extends Controller
         return json_encode(
             array(
                 "number"=>$_REQUEST['number'],
-                "words"=>Common::convert_number($_REQUEST['number'])
+                "words"=>  Utils::convert_number($_REQUEST['number'])
             )
         );
     }

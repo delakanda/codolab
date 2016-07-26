@@ -5,12 +5,19 @@ class Utils
     private static $singulars = array();
     private static $plurals = array();
     
+    public static function isJson($string) 
+    {
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
+    }
+    
     /**
      * Returns the sigular form of any plural english word which is passed to it.
      * 
      * @param string $word
      * @see Utils::plural
      */
+    
     public static function singular($word)
     {
         $singular = array_search($word, Utils::$singulars);

@@ -47,6 +47,4 @@ class System
         
         return floor(($end - $start) / 86400);
     }
-    
-    
 }

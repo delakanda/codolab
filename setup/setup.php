@@ -324,7 +324,7 @@ function db_set_up()
 {
     copy_dir("vendor/codogh/codolab/setup/yentu*", "$home/yentu");
     
-    exec('vendor/bin/yentu/migrate', $output, $return);
+    exec('vendor/bin/yentu migrate', $output, $return);
 
     if (!$return) 
     {

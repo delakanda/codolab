@@ -322,137 +322,17 @@ function get_db_credentials()
 
 function db_set_up()
 {
-    Db::query("CREATE SCHEMA system;");
+    copy_dir("vendor/codogh/codolab/setup/yentu*", "$home/yentu");
     
-    Db::query("
-        CREATE TABLE system.roles (
-            role_id serial NOT NULL,
-            role_name character varying(64),
-            CONSTRAINT roles_role_id_pkey PRIMARY KEY (role_id)
-        );"
-    );
+    exec('vendor/bin/yentu/migrate', $output, $return);
 
-    Db::query("
-        CREATE TABLE system.users (
-            user_id serial NOT NULL,
-            user_name character varying(64) NOT NULL,
-            password character varying(64) NOT NULL,
-            role_id integer,
-            first_name character varying(64) NOT NULL,
-            last_name character varying(64) NOT NULL,
-            other_names character varying(64),
-            user_status numeric(1,0),
-            email character varying(64) NOT NULL,
-            CONSTRAINT users_user_id_pkey PRIMARY KEY (user_id),
-            CONSTRAINT user_name_ukey UNIQUE (user_name),
-            CONSTRAINT users_role_id_fkey FOREIGN KEY (role_id) 
-                REFERENCES system.roles(role_id) 
-                ON DELETE SET NULL
-        );"
-    );
-
-    Db::query("
-        CREATE TABLE system.audit_trail (
-            audit_trail_id serial NOT NULL,
-            user_id integer NOT NULL,
-            item_id integer NOT NULL,
-            item_type character varying(64) NOT NULL,
-            description character varying(4000) NOT NULL,
-            audit_date timestamp without time zone NOT NULL,
-            type numeric NOT NULL,
-            data text,
-            CONSTRAINT audit_trail_audit_trail_id_pkey PRIMARY KEY (audit_trail_id),
-            CONSTRAINT audit_trail_user_id_fkey FOREIGN KEY (user_id) 
-                REFERENCES system.users(user_id) 
-                ON DELETE SET NULL
-        );"
-    );
-
-    Db::query("
-        CREATE TABLE system.audit_trail_data (
-            audit_trail_data_id serial NOT NULL,
-            audit_trail_id integer NOT NULL,
-            data text,
-            CONSTRAINT audit_trail_data_audit_trail_data_id_pkey PRIMARY KEY (audit_trail_data_id)
-        );"
-    );
-
-    Db::query("
-        CREATE TABLE system.permissions (
-            permission_id serial NOT NULL,
-            role_id integer NOT NULL,
-            permission character varying(4000),
-            value numeric NOT NULL,
-            module character varying(4000),
-            CONSTRAINT permissions_permission_id_pkey PRIMARY KEY (permission_id),
-            CONSTRAINT permissios_role_id_fkey FOREIGN KEY (role_id) 
-                REFERENCES system.roles(role_id) 
-                ON DELETE CASCADE
-        );"
-    );
+    if (!$return) 
+    {
+        echo "Yentu migrations Successful";
+    } 
     
-    Db::query("
-        CREATE TABLE system.api_keys
-        (
-            api_key_id serial NOT NULL,
-            user_id integer NOT NULL,
-            active boolean NOT NULL,
-            key character varying(512) NOT NULL,
-            secret character varying(512) NOT NULL,
-            CONSTRAINT api_keys_pkey PRIMARY KEY (api_key_id ),
-            CONSTRAINT api_keys_user_id_fkey FOREIGN KEY (user_id)
-                REFERENCES system.users (user_id) MATCH SIMPLE
-                ON UPDATE NO ACTION ON DELETE NO ACTION
-        );"
-    );
-
-    Db::query("
-        CREATE TABLE system.notes
-        (
-            note_id serial NOT NULL,
-            note character varying(4000),
-            note_time timestamp without time zone NOT NULL,
-            item_id integer NOT NULL,
-            item_type character varying(1024) NOT NULL,
-            user_id integer NOT NULL,
-            CONSTRAINT notes_note_id_pkey PRIMARY KEY (note_id),
-            CONSTRAINT notes_user_id_fkey FOREIGN KEY (user_id)
-                REFERENCES system.users (user_id) MATCH SIMPLE
-                ON UPDATE NO ACTION ON DELETE NO ACTION
-        );"
-    );
-
-    Db::query("
-        CREATE TABLE system.binary_objects
-        (
-            object_id serial NOT NULL,
-            data bytea,
-            CONSTRAINT binary_objects_pkey PRIMARY KEY (object_id)
-        );"
-    );
-    
-    Db::query("
-        CREATE TABLE system.note_attachments
-        (
-            note_attachment_id serial NOT NULL,
-            description character varying(4000) NOT NULL,
-            object_id integer NOT NULL,
-            note_id integer NOT NULL,
-            CONSTRAINT note_attachments_pkey PRIMARY KEY (note_attachment_id),
-            CONSTRAINT note_attachments_note_id_fkey FOREIGN KEY (note_id)
-                REFERENCES system.notes (note_id) MATCH SIMPLE
-                ON UPDATE NO ACTION ON DELETE NO ACTION
-        );"
-    );
-    
-    Db::query("
-        CREATE TABLE system.configurations
-        (
-            configuration_id serial NOT NULL,
-            key character varying(4000) NOT NULL,
-            value character varying(4000),
-            user_id integer NOT NULL,
-            CONSTRAINT configuration_id_pkey PRIMARY KEY (configuration_id)
-        );"
-    );
+    else 
+    {
+        echo "Yentu migrations failed";
+    }
 }

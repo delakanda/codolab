@@ -3,6 +3,7 @@
     "description" : "A clone of WYF from ekowabaka/wyf",
     "license" : "MIT",
     "require" : {
+        "codogh/yentu": "dev-master",
         "smarty/smarty" : "3.1.29",
         "phpoffice/phpexcel": "1.8.*",
         "itbz/fpdf" : "1.7.*",
